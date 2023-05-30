@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="box">
+  <div class="container">
     <div class="logo">
       <img class="img" src="./../image/logo.png" alt="#">
       <div class="content">黑盾等保实战工程师考试系统</div>
@@ -16,8 +16,8 @@
 </template>
 
 <style scoped>
-.box {
-  width: 1440px;
+.container {
+  width: 1220px;
   height: 90px;
 
   margin: auto;
@@ -26,7 +26,7 @@
   justify-content: space-between;
 }
 
-.box .logo {
+.container .logo {
   display: flex;
 }
 

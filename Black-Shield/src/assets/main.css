@@ -1,0 +1,309 @@
+/*.box {*/
+/*    width: 1440px;*/
+/*    margin: auto;*/
+/*}*/
+
+/*!* HEADER *!*/
+/*.header {*/
+/*    width: 1220px;*/
+/*    margin: auto;*/
+/*}*/
+
+/*!* BODY *!*/
+/*.body {*/
+/*    height: 724px;*/
+/*    width: 1220px;*/
+/*    margin: auto;*/
+/*}*/
+
+/*.rectangle {*/
+/*    position: absolute;*/
+
+/*    width: 80px;*/
+/*    height: 6px;*/
+/*    top: 51px;*/
+/*    left: 4px;*/
+
+/*    background: linear-gradient(90deg, #4A0197 14.72%, #D0C0FD 191.25%);*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/*.body {*/
+/*    position: relative;*/
+/*}*/
+
+/*.bg {*/
+/*    position: absolute;*/
+/*    right: 0;*/
+/*}*/
+
+/*.joint-name {*/
+/*    position: absolute;*/
+/*    width: 414px;*/
+/*    height: 66px;*/
+/*    top: 94px;*/
+/*}*/
+
+/*.info {*/
+/*    position: absolute;*/
+/*    width: 415px;*/
+/*    height: 88px;*/
+/*    left: 4px;*/
+/*    top: 165px;*/
+
+/*    font-family: 'Source Code Pro', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 16px;*/
+/*    line-height: 140%;*/
+
+/*    letter-spacing: 0.295em;*/
+
+/*    color: #09002A;*/
+/*}*/
+
+/*.cards {*/
+/*    width: 422px;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+
+/*    position: absolute;*/
+/*    top: 278px;*/
+/*}*/
+/*.login {*/
+/*    position: absolute;*/
+/*    width: 175px;*/
+/*    height: 60px;*/
+/*    left: 115px;*/
+/*    top: 586px;*/
+
+/*    padding-left: 20px;*/
+
+/*    font-family: 'Source Code Pro', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 600;*/
+/*    font-size: 24px;*/
+/*    line-height: 60px;*/
+
+/*    background: linear-gradient(90deg, #4A0197 10.5%, #D0C0FD 136.41%);*/
+/*    border-radius: 30px;*/
+
+/*    letter-spacing: 0.255em;*/
+
+/*    color: #FFFFFF;*/
+/*}*/
+
+/*!* FOOTER *!*/
+/*.footer {*/
+/*    position: relative;*/
+
+/*    height: 210px;*/
+/*}*/
+
+/*.footer-bg {*/
+/*    position: absolute;*/
+/*}*/
+
+/*span {*/
+/*    position: absolute;*/
+/*}*/
+
+/*.span01 {*/
+/*    position: absolute;*/
+/*    left: 115px;*/
+/*    top: 30px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-weight: 400;*/
+/*    font-size: 24px;*/
+/*    line-height: 16px;*/
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #FFFFFF;*/
+/*}*/
+
+/*.span02 {*/
+/*    position: absolute;*/
+/*    height: 17px;*/
+/*    left: 115px;*/
+/*    top: 66px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 17px;*/
+/*    line-height: 17px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #B4B4B4;*/
+/*}*/
+
+/*.span03 {*/
+/*    position: absolute;*/
+/*    height: 17px;*/
+/*    left: 115px;*/
+/*    top: 103px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 17px;*/
+/*    line-height: 17px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #B4B4B4;*/
+/*}*/
+
+/*.span04 {*/
+/*    position: absolute;*/
+/*    height: 17px;*/
+/*    left: 115px;*/
+/*    top: 140px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 17px;*/
+/*    line-height: 17px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #B4B4B4;*/
+/*}*/
+
+/*.span05 {*/
+/*    position: absolute;*/
+/*    height: 17px;*/
+/*    left: 630px;*/
+/*    top: 66px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 17px;*/
+/*    line-height: 17px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #B4B4B4;*/
+/*}*/
+
+/*.span06 {*/
+/*    position: absolute;*/
+/*    height: 17px;*/
+/*    left: 630px;*/
+/*    top: 103px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 17px;*/
+/*    line-height: 17px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #B4B4B4;*/
+/*}*/
+
+/*.span07 {*/
+/*    position: absolute;*/
+/*    height: 17px;*/
+/*    left: 630px;*/
+/*    top: 140px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 17px;*/
+/*    line-height: 17px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #B4B4B4;*/
+/*}*/
+
+/*.span08 {*/
+/*    position: absolute;*/
+/*    height: 12px;*/
+/*    left: 1112px;*/
+/*    top: 129px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 12px;*/
+/*    line-height: 12px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #FFFFFF;*/
+/*}*/
+
+/*.span09 {*/
+/*    position: absolute;*/
+/*    height: 12px;*/
+/*    left: 1210px;*/
+/*    top: 129px;*/
+
+/*    font-family: 'PingFang SC';*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 12px;*/
+/*    line-height: 12px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #FFFFFF;*/
+/*}*/
+
+/*.span10 {*/
+/*    position: absolute;*/
+/*    height: 12px;*/
+/*    left: 1138px;*/
+/*    top: 157px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 12px;*/
+/*    line-height: 12px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #FFFFFF;*/
+/*}*/
+
+/*.span11 {*/
+/*    position: absolute;*/
+/*    height: 14px;*/
+/*    left: 573px;*/
+/*    top: 177px;*/
+
+/*    font-family: 'PingFang SC', serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 14px;*/
+/*    line-height: 14px;*/
+
+/*    letter-spacing: 0.105em;*/
+
+/*    color: #B4B4B4;*/
+/*}*/
+
+/*.rongzhi {*/
+/*    position: absolute;*/
+/*    width: 76px;*/
+/*    height: 76px;*/
+/*    left: 1100px;*/
+/*    top: 35px;*/
+/*}*/
+
+/*.haixia {*/
+/*    position: absolute;*/
+/*    width: 76px;*/
+/*    height: 76px;*/
+/*    left: 1198px;*/
+/*    top: 35px;*/
+/*}*/
