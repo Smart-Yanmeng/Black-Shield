@@ -8,6 +8,11 @@
       <img class="img" src="./../image/logo.png" alt="#">
       <div class="content">黑盾等保实战工程师考试系统</div>
     </div>
+
+    <div class="welcome">
+      <span>欢迎您！{{ studentName }}同学</span>
+    </div>
+
     <div class="menu">
       <div class="bar1"></div>
       <div class="bar2"></div>
@@ -17,6 +22,8 @@
 
 <style scoped>
 .container {
+  position: relative;
+
   width: 1220px;
   height: 90px;
 
@@ -48,8 +55,31 @@
   color: #09002A;
 }
 
+.welcome {
+  position: absolute;
+  right: 60px;
+  top: 33px;
+
+  font-family: 'Source Code Pro',serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 18px;
+
+  letter-spacing: 0.255em;
+
+  color: rgba(9, 0, 42, 0.9);
+}
+
 .menu {
+  height: 21px;
   width: 24px;
+
+  margin-top: 33px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .bar1 {
@@ -57,9 +87,6 @@
   border: 3px solid #230147;
 
   box-sizing: border-box;
-
-  position: absolute;
-  top: 36px;
 }
 
 .bar2 {
@@ -67,8 +94,5 @@
   border: 3px solid #230147;
 
   box-sizing: border-box;
-
-  position: absolute;
-  top: 51px;
 }
 </style>

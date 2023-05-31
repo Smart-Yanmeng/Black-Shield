@@ -2,7 +2,7 @@
 import "@/assets/main.css";
 import "@/assets/base.css";
 
-import HeaderBar from "@/components/HeaderBar.vue";
+import HeaderBar from "@/components/Header.vue";
 import Card from "@/components/Card.vue";
 </script>
 
