@@ -3,6 +3,7 @@ import Login from "@/pages/views/login.vue";
 import Home from "@/pages/views/home.vue";
 import Blank from "@/pages/views/blank.vue";
 import PersonalDetails from "@/pages/views/PersonalDetails.vue";
+import Appointment from "@/pages/views/Appointment.vue";
 
 const routes = [
     // 匹配空路径的时候，跳转到login页面
@@ -24,6 +25,10 @@ const routes = [
         path: '/user',
         name: 'User',
         component: PersonalDetails
+    }, {
+        path: '/appointment',
+        name: 'Appointment',
+        component: Appointment
     }
 ];
 
