@@ -5,6 +5,7 @@
     <router-link to="/index">点击index</router-link>
     <router-link to="/user">点击个人信息</router-link>
     <router-link to="/appointment">点击预约</router-link>
+    <router-link to="/changePwd">点击修改密码</router-link>
     <router-view></router-view>
   </div>
 

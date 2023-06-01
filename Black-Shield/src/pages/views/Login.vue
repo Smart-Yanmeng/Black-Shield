@@ -1,12 +1,14 @@
 <script setup>
 
-import HeaderBar from "@/components/Header.vue";
+import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
   <div>
-    <HeaderBar></HeaderBar>
+    <div class="header">
+      <Header></Header>
+    </div>
 
     <div class="body">
       <img class="bg" src="./../../image/background01.png" alt="#">
@@ -32,7 +34,9 @@ import Footer from "@/components/Footer.vue";
       </div>
     </div>
 
-    <Footer></Footer>
+    <div class="footer">
+      <Footer></Footer>
+    </div>
   </div>
 
 </template>

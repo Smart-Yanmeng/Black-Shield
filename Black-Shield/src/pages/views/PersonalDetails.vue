@@ -16,20 +16,20 @@ import PurpleButton from "@/components/PurpleButton.vue";
       <div class="title">个人信息</div>
 
       <div class="detail">
-        <div class="nickname">用户昵称：</div>
-        <div class="msg-box">{{ nickname }}dawdwad</div>
+        <div class="label">用户昵称：</div>
+        <input class="msg-box" type="text">
       </div>
       <div class="detail">
-        <div class="nickname">手机号：</div>
-        <div class="msg-box">{{ phonenumber }}dawdwad</div>
+        <div class="label">手机号：</div>
+        <input class="msg-box" type="text">
       </div>
       <div class="detail">
-        <div class="nickname">电子邮箱：</div>
-        <div class="msg-box">{{ email }}dawdwad</div>
+        <div class="label">电子邮箱：</div>
+        <input class="msg-box" type="text">
       </div>
       <div class="detail">
-        <div class="nickname">身份证号：</div>
-        <div class="msg-box">{{ card }}dawdwad</div>
+        <div class="label">身份证号：</div>
+        <input class="msg-box" type="text">
       </div>
 
       <purple-button class="save-btn"></purple-button>
@@ -86,7 +86,7 @@ import PurpleButton from "@/components/PurpleButton.vue";
   justify-content: space-between;
 }
 
-.nickname {
+.label {
   width: 88px;
   height: 21px;
   margin: auto 0;
@@ -108,10 +108,11 @@ import PurpleButton from "@/components/PurpleButton.vue";
   width: 322px;
   height: 49px;
 
+  box-sizing: border-box;
+
   background: #FAFBFB;
   border-radius: 6px;
-  padding-left: 20px;
-  padding-top: 14px;
+  padding: 0 20px;
 
   font-family: 'PingFang SC', serif;
   font-style: normal;
