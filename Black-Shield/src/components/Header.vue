@@ -25,9 +25,9 @@
   position: relative;
 
   width: 1220px;
-  height: 90px;
+  height: 72px;
 
-  margin: auto;
+  margin: auto auto 18px auto;
 
   display: flex;
   justify-content: space-between;
@@ -42,13 +42,13 @@
 }
 
 .content {
-  height: 90px;
+  height: 72px;
 
   font-family: '微软雅黑 Light', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
-  line-height: 90px;
+  line-height: 72px;
 
   letter-spacing: 0.2em;
 
@@ -58,7 +58,7 @@
 .welcome {
   position: absolute;
   right: 60px;
-  top: 33px;
+  top: 28px;
 
   font-family: 'Source Code Pro',serif;
   font-style: normal;
@@ -75,7 +75,7 @@
   height: 21px;
   width: 24px;
 
-  margin-top: 33px;
+  margin-top: 26px;
 
   display: flex;
   flex-direction: column;
