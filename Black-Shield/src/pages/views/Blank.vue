@@ -1,12 +1,12 @@
 <script setup>
 
-// import Menu from "@/components/Menu.vue";
-import WhiteButton from "@/components/WhiteButton.vue";
+import AuthenticationCard from "@/components/AuthenticationCard.vue";
+import GoRegister from "@/components/GoRegister.vue";
 </script>
 
 <template>
-<!--  <Menu></Menu>-->
-  <white-button></white-button>
+  <AuthenticationCard></AuthenticationCard>
+  <GoRegister></GoRegister>
 </template>
 
 <style scoped>

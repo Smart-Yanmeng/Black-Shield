@@ -14,7 +14,10 @@ import Footer from "@/components/Footer.vue";
       <img class="bg" src="./../../image/background01.png" alt="#">
       <div class="left-box">
         <div class="left"></div>
-        <img class="close" src="./../../image/X.png" alt="#">
+        <router-link to="index">
+          <img class="close" src="./../../image/X.png" alt="#">
+        </router-link>
+        <router-view></router-view>
 
         <span class="title">欢迎登录</span>
         <div class="username">
