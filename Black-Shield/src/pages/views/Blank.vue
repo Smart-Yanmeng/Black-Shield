@@ -1,12 +1,12 @@
 <script setup>
 
-import AuthenticationCard from "@/components/AuthenticationCard.vue";
-import GoRegister from "@/components/GoRegister.vue";
+import QuestionCard from "@/components/QuestionCard.vue";
+import TimeOut from "@/components/TimeOut.vue"
 </script>
 
 <template>
-  <AuthenticationCard></AuthenticationCard>
-  <GoRegister></GoRegister>
+  <QuestionCard></QuestionCard>
+  <TimeOut></TimeOut>
 </template>
 
 <style scoped>
