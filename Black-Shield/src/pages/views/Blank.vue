@@ -1,12 +1,10 @@
 <script setup>
 
-import QuestionCard from "@/components/QuestionCard.vue";
-import TimeOut from "@/components/TimeOut.vue"
+import QuestionAnswerCard from "@/components/QuestionAnswerCard.vue";
 </script>
 
 <template>
-  <QuestionCard></QuestionCard>
-  <TimeOut></TimeOut>
+  <QuestionAnswerCard></QuestionAnswerCard>
 </template>
 
 <style scoped>
