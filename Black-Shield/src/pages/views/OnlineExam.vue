@@ -2,6 +2,7 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import QuestionCard from "@/components/QuestionCard.vue";
+import QuestionAnswerCard from "@/components/QuestionAnswerCard.vue";
 </script>
 
 <template>
@@ -15,8 +16,11 @@ import QuestionCard from "@/components/QuestionCard.vue";
       <div class="questions">共100题 计时120分钟</div>
     </div>
 
-    <div class="question-card">
+    <div class="question-card display-none">
       <QuestionCard></QuestionCard>
+    </div>
+    <div class="question-card">
+      <QuestionAnswerCard></QuestionAnswerCard>
     </div>
 
     <Footer></Footer>

@@ -9,10 +9,9 @@
           {{ index + 1 }}/{{ question.length }}
         </div>
         <div class="clock">
+          <div class="time-out-first">本次用时</div>
           <img class="clock-image" src="./../image/clock.png" alt="#">
-          <div class="time-out">
-
-          </div>
+          <div class="time-out">00:{{ timeUsageM }}:{{ timeUsageS }}</div>
         </div>
       </div>
 
@@ -98,6 +97,18 @@
   display: flex;
 }
 
+.time-out-first {
+  height: 60px;
+
+  font-family: 'Helvetica', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 60px;
+  text-align: center;
+  letter-spacing: 0.2em;
+}
+
 .clock-image {
   width: 34px;
   height: 34px;
@@ -105,11 +116,13 @@
 }
 
 .time-out {
+  height: 60px;
+
   font-family: 'Helvetica', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
-  line-height: 34px;
+  line-height: 60px;
   text-align: center;
   letter-spacing: 0.2em;
 
@@ -135,7 +148,7 @@
   margin: 0 0 36px 26px;
 }
 
-.incorrect-option {
+.no-selected {
   width: 44px;
   height: 44px;
 
@@ -148,19 +161,34 @@
   background-color: #FFFFFF;
 }
 
+.incorrect-option {
+  width: 44px;
+  height: 44px;
+
+  text-align: center;
+  line-height: 40px;
+  font-weight: 400;
+  font-size: 18px;
+
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 2px solid #D3544C;
+  color: #D3544C;
+}
+
 .correct-option {
   width: 44px;
   height: 44px;
 
   text-align: center;
-  line-height: 44px;
+  line-height: 40px;
   font-weight: 400;
   font-size: 18px;
 
   border-radius: 50%;
-  background-color: #105B9E;
-
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  border: 2px solid #67C23A;
+  color: #67C23A;
 }
 
 .option-content {
@@ -339,7 +367,7 @@
   left: 16px;
   top: 637px;
 
-  font-family: 'Helvetica',serif;
+  font-family: 'Helvetica', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -357,7 +385,7 @@
   left: 16px;
   top: 676px;
 
-  font-family: 'Helvetica',serif;
+  font-family: 'Helvetica', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -412,6 +440,8 @@ export default {
     return {
       idx: 0,
       correctNum: 0,
+      timeUsageM: 30,
+      timeUsageS: 42,
       question: [
         {
           id: 1,
@@ -423,12 +453,12 @@ export default {
             {
               id: 1,
               name: '星期一',
-              checked: true,
+              checked: false,
               letter: 'A'
             }, {
               id: 2,
               name: '星期三',
-              checked: false,
+              checked: true,
               letter: 'B'
             }, {
               id: 3,
@@ -527,7 +557,7 @@ export default {
             }, {
               id: 2,
               name: '是的',
-              checked: false,
+              checked: true,
               letter: 'B'
             }, {
               id: 3,
@@ -545,10 +575,12 @@ export default {
   },
   methods: {
     last() {
-      this.idx--;
+      if (this.idx > 0) this.idx--;
+      else alert("这是第一道题啦！");
     },
     next() {
-      this.idx++;
+      if (this.idx < this.question.length - 1) this.idx++;
+      else alert("这是最后一道题啦！");
     },
     correct(item) {
       for (let i = 0; i < 3; i++) {
