@@ -16,10 +16,10 @@ import QuestionAnswerCard from "@/components/QuestionAnswerCard.vue";
       <div class="questions">共100题 计时120分钟</div>
     </div>
 
-    <div class="question-card display-none">
+    <div class="question-card">
       <QuestionCard></QuestionCard>
     </div>
-    <div class="question-card">
+    <div class="question-card display-none">
       <QuestionAnswerCard></QuestionAnswerCard>
     </div>
 
