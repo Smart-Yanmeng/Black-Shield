@@ -8,6 +8,7 @@
     <router-link to="/changePwd">点击修改密码</router-link>
     <router-link to="/online">点击线上考试</router-link>
     <router-link to="/online/exam">点击开始考试</router-link>
+    <router-link to="/online/exam/answer">点击查询答案</router-link>
     <router-view></router-view>
   </div>
 

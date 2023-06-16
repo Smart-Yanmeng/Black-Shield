@@ -13,9 +13,16 @@
       <span>欢迎您！{{ studentName }}同学</span>
     </div>
 
-    <div class="menu">
+    <div class="menu" @click="toggleBox()">
       <div class="bar1"></div>
       <div class="bar2"></div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab">个人信息</div>
+      <div class="tab">我的预约</div>
+      <div class="tab">修改密码</div>
+      <div class="tab">退出登录</div>
     </div>
   </div>
 </template>
@@ -60,7 +67,7 @@
   right: 60px;
   top: 28px;
 
-  font-family: 'Source Code Pro',serif;
+  font-family: 'Source Code Pro', serif;
   font-style: normal;
   font-weight: 300;
   font-size: 16px;
@@ -95,4 +102,52 @@
 
   box-sizing: border-box;
 }
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+
+  padding: 9px 0;
+
+  position: absolute;
+  width: 130px;
+  height: 138px;
+  left: 1080px;
+  top: 69px;
+
+  z-index: 10;
+
+  background: #FFFFFF;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+
+.tab {
+  width: 130px;
+  height: 30px;
+
+  font-family: 'Source Code Pro',serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 30px;
+  text-align: center;
+
+  letter-spacing: 0.255em;
+
+  color: #000000;
+
+}
 </style>
+
+<script>
+export default {
+  data() {
+  },
+  methods: {
+    toggleBox() {
+
+    }
+  }
+}
+</script>

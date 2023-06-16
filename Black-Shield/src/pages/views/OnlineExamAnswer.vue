@@ -1,7 +1,7 @@
 <script setup>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import QuestionCard from "@/components/QuestionCard.vue";
+import QuestionAnswerCard from "@/components/QuestionAnswerCard.vue";
 </script>
 
 <template>
@@ -16,7 +16,7 @@ import QuestionCard from "@/components/QuestionCard.vue";
     </div>
 
     <div class="question-card">
-      <QuestionCard></QuestionCard>
+      <QuestionAnswerCard></QuestionAnswerCard>
     </div>
 
     <Footer></Footer>
@@ -34,10 +34,10 @@ import QuestionCard from "@/components/QuestionCard.vue";
 .name {
   position: absolute;
   height: 34px;
-  left: calc(50% - 282px/2 - 409px);
+  left: calc(50% - 282px / 2 - 409px);
   top: 73px;
 
-  font-family: 'Helvetica',serif;
+  font-family: 'Helvetica', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
@@ -51,10 +51,10 @@ import QuestionCard from "@/components/QuestionCard.vue";
 .exam-date {
   position: absolute;
   height: 14px;
-  left: calc(50% - 254px/2 - 423px);
+  left: calc(50% - 254px / 2 - 423px);
   top: 127px;
 
-  font-family: 'Helvetica',serif;
+  font-family: 'Helvetica', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -69,10 +69,10 @@ import QuestionCard from "@/components/QuestionCard.vue";
 .questions {
   position: absolute;
   height: 14px;
-  left: calc(50% - 175px/2 - 462.5px);
+  left: calc(50% - 175px / 2 - 462.5px);
   top: 161px;
 
-  font-family: 'Helvetica',serif;
+  font-family: 'Helvetica', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

@@ -326,14 +326,11 @@ export default {
   data() {
     return {
       idx: 0,
-      answer: [],
       question: [
         {
           id: 1,
           selected: false,
           name: '今天星期几?',
-          answer: 'A',
-          score: 2,
           option: [
             {
               id: 1,
@@ -382,8 +379,6 @@ export default {
           id: 3,
           selected: false,
           name: '你的梦想是什么?',
-          answer: 'B',
-          score: 2,
           option: [
             {
               id: 1,
