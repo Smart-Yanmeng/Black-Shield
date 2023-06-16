@@ -18,11 +18,23 @@
       <div class="bar2"></div>
     </div>
 
-    <div class="tabs">
-      <div class="tab">个人信息</div>
-      <div class="tab">我的预约</div>
-      <div class="tab">修改密码</div>
-      <div class="tab">退出登录</div>
+    <div :class="show === 1 ? 'tabs' : 'display-none'">
+      <div :class="show === 1 ? 'tab' : 'display-none'">
+        <router-link to="/user">个人信息</router-link>
+        <router-view></router-view>
+      </div>
+      <div :class="show === 1 ? 'tab' : 'display-none'">
+        <router-link to="/appointment">我的预约</router-link>
+        <router-view></router-view>
+      </div>
+      <div :class="show === 1 ? 'tab' : 'display-none'">
+        <router-link to="/changePwd">修改密码</router-link>
+        <router-view></router-view>
+      </div>
+      <div :class="show === 1 ? 'tab' : 'display-none'">
+        <router-link to="/login">退出登录</router-link>
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -112,7 +124,7 @@
   position: absolute;
   width: 130px;
   height: 138px;
-  left: 1080px;
+  left: 1100px;
   top: 69px;
 
   z-index: 10;
@@ -126,7 +138,7 @@
   width: 130px;
   height: 30px;
 
-  font-family: 'Source Code Pro',serif;
+  font-family: 'Source Code Pro', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -136,17 +148,25 @@
   letter-spacing: 0.255em;
 
   color: #000000;
+}
 
+.tab:hover {
+  background-color: #EEE8FC;
 }
 </style>
 
 <script>
 export default {
   data() {
+    return {
+      studentName: 'abc',
+      show: 0,
+    }
   },
   methods: {
     toggleBox() {
-
+      if (this.show === 1) this.show = 0;
+      else this.show = 1;
     }
   }
 }

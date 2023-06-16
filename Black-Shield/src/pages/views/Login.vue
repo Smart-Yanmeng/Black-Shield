@@ -21,11 +21,11 @@ import Footer from "@/components/Footer.vue";
 
         <span class="title">欢迎登录</span>
         <div class="username">
-          <input class="username-input" type="text" placeholder="用户名">
+          <input class="username-input" type="text" placeholder="用户名" v-model="username">
         </div>
 
         <div class="password">
-          <input class="password-input" type="password" placeholder="密码">
+          <input class="password-input" type="password" placeholder="密码" v-model="password">
         </div>
 
         <span class="verify">点击进行验证</span>
@@ -206,5 +206,40 @@ import Footer from "@/components/Footer.vue";
 
   color: #FFFFFF;
 }
-
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  mounted() {
+    this.$axios({
+      method: 'post',
+      url: '',
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+      },
+      data: {
+        username: this.username,
+        password: this.password
+      }
+    })
+        .then(res => {
+          if (res.data.code === 0) {
+            // 利用 localStorage 存储到本地
+            localStorage.setItem("token", res.data.data.token);
+            console.log("Success!");
+          } else {
+            console.log("Error!");
+          }
+        })
+        .catch(err => {
+          console.log("请求错误，请联系管理员");
+    })
+  }
+}
+</script>
