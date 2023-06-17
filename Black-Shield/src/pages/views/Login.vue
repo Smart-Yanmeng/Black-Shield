@@ -30,7 +30,7 @@ import Footer from "@/components/Footer.vue";
 
         <span class="verify">点击进行验证</span>
 
-        <div class="login">
+        <div class="login" @click="sendRequest()">
           <router-link to="/login">点击登录 <img src="./../../image/Vector.png" alt="#"></router-link>
           <router-view></router-view>
         </div>
@@ -209,6 +209,8 @@ import Footer from "@/components/Footer.vue";
 </style>
 
 <script>
+import router from "@/router";
+
 export default {
   data() {
     return {
@@ -216,30 +218,35 @@ export default {
       password: ''
     }
   },
-  mounted() {
-    this.$axios({
-      method: 'post',
-      url: '',
-      headers: {
-        'Content-Type': "application/json;charset=UTF-8",
-      },
-      data: {
-        username: this.username,
-        password: this.password
-      }
-    })
-        .then(res => {
-          if (res.data.code === 0) {
-            // 利用 localStorage 存储到本地
-            localStorage.setItem("token", res.data.data.token);
-            console.log("Success!");
-          } else {
-            console.log("Error!");
-          }
-        })
-        .catch(err => {
-          console.log("请求错误，请联系管理员");
-    })
+  methods: {
+    sendRequest() {
+      this.$axios({
+        method: 'post',
+        url: '/api/index/login',
+        headers: {
+          'Content-Type': "application/json;charset=UTF-8",
+        },
+        data: {
+          username: this.username,
+          password: this.password
+        }
+      })
+          .then(res => {
+            if (res.data.code === 200) {
+              // 利用 localStorage 存储到本地
+              localStorage.setItem("token", res.data.data.token);
+              console.log("Success!");
+
+              // 执行页面跳转
+              router.push("/home");
+            } else {
+              console.log("Error!");
+            }
+          })
+          .catch(err => {
+            console.log("请求错误，请联系管理员");
+          })
+    }
   }
 }
 </script>

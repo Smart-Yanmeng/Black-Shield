@@ -8,6 +8,7 @@ import PasswordChange from "@/pages/views/PasswordChange.vue";
 import Online from "@/pages/views/Online.vue";
 import OnlineExam from "@/pages/views/OnlineExam.vue";
 import OnlineExamAnswer from "@/pages/views/OnlineExamAnswer.vue";
+import Index from "@/pages/views/Index.vue";
 
 const routes = [
     // 匹配空路径的时候，跳转到login页面
@@ -19,7 +20,11 @@ const routes = [
         component: Blank
     }, {
         path: '/index',
-        name: 'App',
+        name: 'Index',
+        component: Index
+    }, {
+        path: '/home',
+        name: 'Home',
         component: Home
     }, {
         path: '/login',
@@ -62,13 +67,13 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-        if (localStorage.getItem("access_token")) {  // 从本地存储localStorage获取当前的token是否存在
+        if (localStorage.getItem("token")) {  // 从本地存储localStorage获取当前的token是否存在
             next()
         } else {
             next('/login') //如果token不存在，就跳到登录
         }
     } else {
-        if (localStorage.getItem("access_token") && to.path === '/login') {  // token存在时候，进去登录页面就自动跳转到首页
+        if (localStorage.getItem("token") && to.path === '/login') {  // token存在时候，进去登录页面就自动跳转到首页
             next('/home')
         } else {
             next()

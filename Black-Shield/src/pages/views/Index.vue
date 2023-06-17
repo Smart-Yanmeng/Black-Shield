@@ -9,7 +9,17 @@ import Card from "@/components/Card.vue";
 <template>
   <div class="box">
     <div class="header">
-      <HeaderBar :message="this.username"></HeaderBar>
+      <div class="header-container">
+        <div class="logo">
+          <img class="img" src="./../../image/logo.png" alt="#">
+          <div class="content">黑盾等保实战工程师考试系统</div>
+        </div>
+
+        <div class="menu" @click="toggleBox()">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+        </div>
+      </div>
     </div>
 
     <div class="body">
@@ -21,6 +31,10 @@ import Card from "@/components/Card.vue";
       </p>
       <div class="cards">
         <Card v-for="(item, index) in CardArr" :key="index" :card="item"></Card>
+      </div>
+      <div class="login">
+        <router-link to="/login">点击登录 <img src="./../../image/Vector.png" alt="#"></router-link>
+        <router-view></router-view>
       </div>
     </div>
 
@@ -47,7 +61,6 @@ import Card from "@/components/Card.vue";
 export default {
   data() {
     return {
-      username: '',
       CardArr: [
         {
           title: '在线考试',
@@ -61,33 +74,70 @@ export default {
         }
       ]
     }
-  },
-  mounted() {
-    this.$axios({
-      method: 'get',
-      url: '/api/users/getUser',
-      headers: {
-        'Content-Type': "application/json;charset=UTF-8",
-        'token': localStorage.getItem("token")
-      }
-    })
-        .then(res => {
-          if (res.data.code === 200) {
-            console.log(res.data.data.username);
-            this.username = res.data.data.username;
-            console.log("Success!");
-          } else {
-            console.log("Error!");
-          }
-        })
-        .catch(err => {
-          console.log("请求错误，请联系管理员");
-        })
   }
 }
 </script>
 
 <style scoped>
+.header-container {
+  position: relative;
+
+  width: 1220px;
+  height: 72px;
+
+  margin: auto auto 18px auto;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-container .logo {
+  display: flex;
+}
+
+.img {
+  margin-right: 8px;
+}
+
+.content {
+  height: 72px;
+
+  font-family: '微软雅黑 Light', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 72px;
+
+  letter-spacing: 0.2em;
+
+  color: #09002A;
+}
+
+.menu {
+  height: 21px;
+  width: 24px;
+
+  margin-top: 26px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bar1 {
+  width: 24px;
+  border: 3px solid #230147;
+
+  box-sizing: border-box;
+}
+
+.bar2 {
+  width: 24px;
+  border: 3px solid #230147;
+
+  box-sizing: border-box;
+}
+
 .box {
   width: 1440px;
   margin: auto;
@@ -159,6 +209,29 @@ export default {
 
   position: absolute;
   top: 278px;
+}
+
+.login {
+  position: absolute;
+  width: 175px;
+  height: 60px;
+  left: 0;
+  top: 496px;
+
+  padding-left: 20px;
+
+  font-family: 'Source Code Pro', serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 60px;
+
+  background: linear-gradient(90deg, #4A0197 10.5%, #D0C0FD 136.41%);
+  border-radius: 30px;
+
+  letter-spacing: 0.255em;
+
+  color: #FFFFFF;
 }
 
 /* FOOTER */

@@ -10,7 +10,7 @@
     </div>
 
     <div class="welcome">
-      <span>欢迎您！{{ studentName }}同学</span>
+      <span>欢迎您！{{ message }}同学</span>
     </div>
 
     <div class="menu" @click="toggleBox()">
@@ -157,9 +157,11 @@
 
 <script>
 export default {
+  props: {
+    message: ''
+  },
   data() {
     return {
-      studentName: 'abc',
       show: 0,
     }
   },
