@@ -13,15 +13,21 @@
         <div class="th5">考试结果</div>
       </div>
       <div class="tr02">
-        <div class="th6"></div>
-        <div class="th7"></div>
-        <div class="th8"></div>
-        <div class="th9"></div>
-        <div class="th10"></div>
+        <div class="th6">{{ message.subject }}</div>
+        <div class="th7">{{ message.examsTime }}</div>
+        <div class="th8">{{ message.numQuestions }}</div>
+        <div class="th9">{{ message.status }}</div>
+        <div class="th10">{{ message.result }}</div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['message']
+}
+</script>
 
 <style scoped>
 .table {

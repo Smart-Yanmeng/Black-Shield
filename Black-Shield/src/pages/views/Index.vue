@@ -14,7 +14,7 @@ import Card from "@/components/Card.vue";
           <div class="content">黑盾等保实战工程师考试系统</div>
         </div>
 
-        <div class="menu" @click="toggleBox()">
+        <div class="menu">
           <div class="bar1"></div>
           <div class="bar2"></div>
         </div>
@@ -78,6 +78,7 @@ export default {
 </script>
 
 <style scoped>
+/* HEADER */
 .header-container {
   position: relative;
 
@@ -142,7 +143,6 @@ export default {
   margin: auto;
 }
 
-/* HEADER */
 .header {
   width: 1220px;
   margin: auto;

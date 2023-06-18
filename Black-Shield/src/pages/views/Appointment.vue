@@ -16,9 +16,7 @@ import AppointmentInfo from "@/components/AppointmentInfo.vue";
       <div class="title">我的预约</div>
 
       <div class="appointment-box">
-        <AppointmentInfo class="appointment-info"></AppointmentInfo>
-        <AppointmentInfo class="appointment-info"></AppointmentInfo>
-        <AppointmentInfo class="appointment-info"></AppointmentInfo>
+        <AppointmentInfo class="appointment-info" v-for="(item, index) in appointmentList" :key="index" :message="item"></AppointmentInfo>
       </div>
 
       <white-button class="close-btn"></white-button>
@@ -34,10 +32,24 @@ import AppointmentInfo from "@/components/AppointmentInfo.vue";
 export default {
   data() {
     return {
-      username: ''
+      username: '',
+      appointmentList: [
+        {
+          "id": '',
+          "subject": '',
+          "examsTime": '',
+          "numQuestions": 0,
+          "status": 0,
+          "score": 0,
+          "userId": 1,
+          "result": 0,
+          "type": 0
+        }
+      ]
     }
   },
   mounted() {
+    // 获取用户名
     this.$axios({
       method: 'get',
       url: '/api/users/getUser',
@@ -55,7 +67,22 @@ export default {
           }
         })
         .catch(err => {
-          console.log("请求错误，请联系管理员");
+          alert("请求错误，请联系管理员");
+        })
+
+    // 获取预约信息
+    this.$axios({
+      method: 'get',
+      url: 'api/users/getUsersAppointment',
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+        'token': localStorage.getItem("token")
+      }
+    })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.appointmentList = res.data.data;
+          }
         })
   }
 }
@@ -93,9 +120,16 @@ export default {
 }
 
 .appointment-box {
+  height: 430px;
+  overflow: auto;
+
   position: absolute;
   top: 95px;
   left: 172px;
+}
+
+.appointment-box::-webkit-scrollbar {
+  width: 0;
 }
 
 .appointment-info {

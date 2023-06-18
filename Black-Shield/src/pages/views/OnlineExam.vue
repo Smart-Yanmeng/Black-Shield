@@ -31,6 +31,7 @@ export default {
     }
   },
   mounted() {
+    // 获取用户名
     this.$axios({
       method: 'get',
       url: '/api/users/getUser',
@@ -49,7 +50,17 @@ export default {
         })
         .catch(err => {
           console.log("请求错误，请联系管理员");
-        })
+        });
+
+    // 获取题目
+    this.$axios({
+      method: 'post',
+      url: '/api/exams/randomExam',
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+        'token': localStorage.getItem("token")
+      }
+    })
   }
 }
 </script>
@@ -100,7 +111,7 @@ export default {
 .questions {
   position: absolute;
   height: 14px;
-  left: calc(50% - 175px/2 - 462.5px);
+  left: calc(50% - 175px/2 - 463px);
   top: 161px;
 
   font-family: 'Helvetica',serif;

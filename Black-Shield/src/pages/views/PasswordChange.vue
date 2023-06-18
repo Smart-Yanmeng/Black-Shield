@@ -18,22 +18,22 @@ import PurpleButton from "@/components/PurpleButton.vue";
       <div class="detail">
         <div class="old-star">*</div>
         <div class="label">旧密码：</div>
-        <input class="msg-box" type="password">
-        <div class="wrong1 display-none">该项不能为空</div>
+        <input class="msg-box" type="password" v-model="oldPwd">
+        <div :class="this.oldPwd === '' ? 'wrong1' : 'display-none'">该项不能为空</div>
       </div>
       <div class="detail">
         <div class="new-star">*</div>
         <div class="label">新密码：</div>
-        <input class="msg-box" type="password">
+        <input class="msg-box" type="password" v-model="newPwd">
       </div>
       <div class="detail">
         <div class="rep-star">*</div>
         <div class="label">确认密码：</div>
-        <input class="msg-box" type="password">
-        <div class="wrong2 display-none">两次输入密码不一致！</div>
+        <input class="msg-box" type="password" v-model="repeatPwd">
+        <div :class="this.newPwd === this.repeatPwd ? 'display-none' : 'wrong2'">两次输入密码不一致！</div>
       </div>
 
-      <purple-button class="save-btn"></purple-button>
+      <purple-button class="save-btn" @click="changePwd()"></purple-button>
       <white-button class="close-btn"></white-button>
     </div>
   </div>
@@ -47,11 +47,34 @@ import PurpleButton from "@/components/PurpleButton.vue";
 export default {
   data() {
     return {
-      username: ''
+      userId: '',
+      username: '',
+      oldPwd: '',
+      newPwd: '',
+      repeatPwd: ''
     }
   },
   methods: {
-
+    changePwd() {
+      this.$axios({
+        method: 'put',
+        url: '/api/users/updateUser',
+        headers: {
+          'Content-Type': "application/json;charset=UTF-8",
+          'token': localStorage.getItem("token")
+        },
+        data: {
+          id: this.userId,
+          oldPassword: this.oldPwd,
+          password: this.newPwd
+        }
+      })
+          .then(res => {
+            if (res.data.code === 200) {
+              alert("修改密码成功！");
+            }
+          })
+    }
   },
   mounted() {
     this.$axios({
@@ -64,6 +87,7 @@ export default {
     })
         .then(res => {
           if (res.data.code === 200) {
+            this.userId = res.data.data.id;
             this.username = res.data.data.username;
             console.log("Success!");
           } else {

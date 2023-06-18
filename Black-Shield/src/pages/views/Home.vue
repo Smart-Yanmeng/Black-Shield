@@ -52,12 +52,15 @@ export default {
         {
           title: '在线考试',
           cardInfo: '点击进入认证系统',
+          goto: '/online'
         }, {
           title: '模拟刷题',
           cardInfo: '点击开始模拟刷题',
+          goto: '/online/exam'
         }, {
           title: '认证查询',
           cardInfo: '点击查询认证成绩',
+          goto: '/query'
         }
       ]
     }

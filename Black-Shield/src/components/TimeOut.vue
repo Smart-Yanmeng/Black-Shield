@@ -49,13 +49,13 @@ export default {
         localStorage.setItem("startTime2", this.minutes); //存储分
       }
       this.timer = setInterval(() => {
-        if (this.timeSeconds == 0 && this.timeMinutes != 0 && this.timeMinutes > 0) {
+        if (this.timeSeconds === 0 && this.timeMinutes !== 0 && this.timeMinutes > 0) {
           let nowTime = new Date().getTime();
           this.timeSeconds = this.seconds;
           localStorage.setItem("startTime1", nowTime);
           this.timeMinutes--;
           localStorage.setItem("startTime2", this.timeMinutes);
-        } else if (this.timeMinutes == 0 && this.timeSeconds == 0) {
+        } else if (this.timeMinutes === 0 && this.timeSeconds === 0) {
           this.timeSeconds = 0;
           this.clear();
           alert("考试时间到");

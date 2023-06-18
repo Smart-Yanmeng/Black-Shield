@@ -1,13 +1,22 @@
 <script setup>
 
-import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
-  <div>
+  <div class="box">
     <div class="header">
-      <Header></Header>
+      <div class="header-container">
+        <div class="logo">
+          <img class="img" src="./../../image/logo.png" alt="#">
+          <div class="content">黑盾等保实战工程师考试系统</div>
+        </div>
+
+        <div class="menu">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+        </div>
+      </div>
     </div>
 
     <div class="body">
@@ -45,6 +54,76 @@ import Footer from "@/components/Footer.vue";
 </template>
 
 <style scoped>
+/* HEADER */
+.header-container {
+  position: relative;
+
+  width: 1220px;
+  height: 72px;
+
+  margin: auto auto 18px auto;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-container .logo {
+  display: flex;
+}
+
+.img {
+  margin-right: 8px;
+}
+
+.content {
+  height: 72px;
+
+  font-family: '微软雅黑 Light', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 72px;
+
+  letter-spacing: 0.2em;
+
+  color: #09002A;
+}
+
+.menu {
+  height: 21px;
+  width: 24px;
+
+  margin-top: 26px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bar1 {
+  width: 24px;
+  border: 3px solid #230147;
+
+  box-sizing: border-box;
+}
+
+.bar2 {
+  width: 24px;
+  border: 3px solid #230147;
+
+  box-sizing: border-box;
+}
+
+.box {
+  width: 1440px;
+  margin: auto;
+}
+
+.header {
+  width: 1220px;
+  margin: auto;
+}
+
 .body {
   position: relative;
 
