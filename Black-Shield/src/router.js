@@ -9,6 +9,7 @@ import Online from "@/pages/views/Online.vue";
 import OnlineExam from "@/pages/views/OnlineExam.vue";
 import OnlineExamAnswer from "@/pages/views/OnlineExamAnswer.vue";
 import Index from "@/pages/views/Index.vue";
+import QueryScore from "@/pages/views/QueryScore.vue";
 
 const routes = [
     // 匹配空路径的时候，跳转到login页面
@@ -75,6 +76,13 @@ const routes = [
             requireAuth: true,
         },
         component: OnlineExamAnswer
+    }, {
+        path: '/online/score',
+        name: 'Score',
+        meta: {
+            requireAuth: true,
+        },
+        component: QueryScore
     }
 ];
 

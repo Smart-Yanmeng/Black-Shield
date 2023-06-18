@@ -9,6 +9,7 @@
     <router-link to="/online">点击线上考试</router-link>
     <router-link to="/online/exam">点击开始考试</router-link>
     <router-link to="/online/exam/answer">点击查询答案</router-link>
+    <router-link to="/online/score">点击查询成绩</router-link>
     <router-view></router-view>
   </div>
 

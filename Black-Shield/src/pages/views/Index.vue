@@ -184,6 +184,8 @@ export default {
 }
 
 .info {
+  margin-top: 5px;
+
   position: absolute;
   width: 415px;
   height: 88px;
