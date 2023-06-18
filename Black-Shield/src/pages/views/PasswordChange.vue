@@ -8,7 +8,7 @@ import PurpleButton from "@/components/PurpleButton.vue";
 
 <template>
   <div class="header">
-    <Header></Header>
+    <Header :message="this.username"></Header>
   </div>
 
   <div class="body">
@@ -42,6 +42,40 @@ import PurpleButton from "@/components/PurpleButton.vue";
     <Footer></Footer>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: ''
+    }
+  },
+  methods: {
+
+  },
+  mounted() {
+    this.$axios({
+      method: 'get',
+      url: '/api/users/getUser',
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+        'token': localStorage.getItem("token")
+      }
+    })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.username = res.data.data.username;
+            console.log("Success!");
+          } else {
+            console.log("Error!");
+          }
+        })
+        .catch(err => {
+          console.log("请求错误，请联系管理员");
+        })
+  }
+}
+</script>
 
 <style scoped>
 .info-box {

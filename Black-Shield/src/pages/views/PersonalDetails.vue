@@ -8,7 +8,7 @@ import PurpleButton from "@/components/PurpleButton.vue";
 
 <template>
   <div class="header">
-    <Header></Header>
+    <Header :message="this.username"></Header>
   </div>
 
   <div class="body">
@@ -17,19 +17,19 @@ import PurpleButton from "@/components/PurpleButton.vue";
 
       <div class="detail">
         <div class="label">用户昵称：</div>
-        <input class="msg-box" type="text">
+        <input class="msg-box" type="text" v-model="this.username">
       </div>
       <div class="detail">
         <div class="label">手机号：</div>
-        <input class="msg-box" type="text">
+        <input class="msg-box" type="text" v-model="this.phoneNumber">
       </div>
       <div class="detail">
         <div class="label">电子邮箱：</div>
-        <input class="msg-box" type="text">
+        <input class="msg-box" type="text" v-model="this.email">
       </div>
       <div class="detail">
         <div class="label">身份证号：</div>
-        <input class="msg-box" type="text">
+        <input class="msg-box" type="text" v-model="this.idCard">
       </div>
 
       <purple-button class="save-btn"></purple-button>
@@ -137,3 +137,43 @@ import PurpleButton from "@/components/PurpleButton.vue";
   left: 391px;
 }
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      phoneNumber: '',
+      email: '',
+      idCard: ''
+    }
+  },
+  methods: {
+
+  },
+  mounted() {
+    this.$axios({
+      method: 'get',
+      url: '/api/users/getUser',
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+        'token': localStorage.getItem("token")
+      }
+    })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.username = res.data.data.username;
+            this.phoneNumber = res.data.data.phone;
+            this.email = res.data.data.email;
+            this.idCard = res.data.data.idcard;
+            console.log("Success!");
+          } else {
+            console.log("Error!");
+          }
+        })
+        .catch(err => {
+          console.log("请求错误，请联系管理员");
+        })
+  }
+}
+</script>

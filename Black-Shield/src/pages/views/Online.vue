@@ -6,7 +6,7 @@ import AuthenticationCard from "@/components/AuthenticationCard.vue";
 
 <template>
   <div>
-    <Header></Header>
+    <Header :message="this.username"></Header>
 
     <div class="body">
       <el-carousel trigger="click" arrow="never" height="248px">
@@ -40,6 +40,7 @@ import AuthenticationCard from "@/components/AuthenticationCard.vue";
 export default {
   data() {
     return {
+      username: '',
       imageBox: [
         {
           'coursePath': 'carousel01.png'
@@ -52,6 +53,27 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    this.$axios({
+      method: 'get',
+      url: '/api/users/getUser',
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+        'token': localStorage.getItem("token")
+      }
+    })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.username = res.data.data.username;
+            console.log("Success!");
+          } else {
+            console.log("Error!");
+          }
+        })
+        .catch(err => {
+          console.log("请求错误，请联系管理员");
+        })
   }
 }
 </script>

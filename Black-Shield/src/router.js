@@ -25,6 +25,9 @@ const routes = [
     }, {
         path: '/home',
         name: 'Home',
+        meta: {
+            requireAuth: true,
+        },
         component: Home
     }, {
         path: '/login',
@@ -40,22 +43,37 @@ const routes = [
     }, {
         path: '/appointment',
         name: 'Appointment',
+        meta: {
+            requireAuth: true,
+        },
         component: Appointment
     }, {
         path: '/changePwd',
         name: '/ChangePwd',
+        meta: {
+            requireAuth: true,
+        },
         component: PasswordChange
     }, {
         path: '/online',
         name: 'Online',
+        meta: {
+            requireAuth: true,
+        },
         component: Online
     }, {
         path: '/online/exam',
         name: 'OnlineExam',
+        meta: {
+            requireAuth: true,
+        },
         component: OnlineExam
     }, {
         path: '/online/exam/answer',
         name: 'ExamAnswer',
+        meta: {
+            requireAuth: true,
+        },
         component: OnlineExamAnswer
     }
 ];

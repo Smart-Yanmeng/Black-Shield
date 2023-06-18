@@ -23,7 +23,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 44px;
+  line-height: 48px;
 
   letter-spacing: 0.255em;
 

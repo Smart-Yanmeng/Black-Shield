@@ -31,7 +31,7 @@
         <router-link to="/changePwd">修改密码</router-link>
         <router-view></router-view>
       </div>
-      <div :class="show === 1 ? 'tab' : 'display-none'">
+      <div :class="show === 1 ? 'tab' : 'display-none'" @click="exitLogin()">
         <router-link to="/login">退出登录</router-link>
         <router-view></router-view>
       </div>
@@ -156,6 +156,8 @@
 </style>
 
 <script>
+import router from "@/router";
+
 export default {
   props: {
     message: ''
@@ -169,6 +171,11 @@ export default {
     toggleBox() {
       if (this.show === 1) this.show = 0;
       else this.show = 1;
+    },
+    exitLogin() {
+      localStorage.removeItem("token");
+
+      router.push("/index");
     }
   }
 }

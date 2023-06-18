@@ -3,7 +3,10 @@
 </script>
 
 <template>
-  <div class="white-button">关闭</div>
+  <div class="white-button">
+    <router-link to="/home">关闭</router-link>
+    <router-view></router-view>
+  </div>
 </template>
 
 <style scoped>
