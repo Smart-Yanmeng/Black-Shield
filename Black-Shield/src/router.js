@@ -93,16 +93,17 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-        if (localStorage.getItem("token")) {  // 从本地存储localStorage获取当前的token是否存在
+        if (localStorage.getItem("token")) {
             next()
         } else {
-            next('/login') //如果token不存在，就跳到登录
+            alert('请先登录');
+            next('/login');
         }
     } else {
-        if (localStorage.getItem("token") && to.path === '/login') {  // token存在时候，进去登录页面就自动跳转到首页
+        if (localStorage.getItem("token") && to.path === '/login') {
             next('/home')
         } else {
-            next()
+            next();
         }
     }
 });

@@ -2,6 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/HeiDun" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Black-Shield-Web/HeiDun" vcs="Git" />
   </component>
 </project>

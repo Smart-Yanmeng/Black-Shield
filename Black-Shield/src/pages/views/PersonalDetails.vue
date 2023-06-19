@@ -32,7 +32,7 @@ import PurpleButton from "@/components/PurpleButton.vue";
         <input class="msg-box" type="text" v-model="this.idCard">
       </div>
 
-      <purple-button class="save-btn"></purple-button>
+      <purple-button class="save-btn" @click="changePersonalDetail()"></purple-button>
       <white-button class="close-btn"></white-button>
     </div>
   </div>
@@ -142,6 +142,7 @@ import PurpleButton from "@/components/PurpleButton.vue";
 export default {
   data() {
     return {
+      userId: '',
       username: '',
       phoneNumber: '',
       email: '',
@@ -149,9 +150,33 @@ export default {
     }
   },
   methods: {
-
+    changePersonalDetail() {
+      this.$axios({
+        method: 'put',
+        url: '/api/users/updateUser',
+        headers: {
+          'Content-Type': "application/json;charset=UTF-8",
+          'token': localStorage.getItem("token")
+        },
+        data: {
+          id: this.userId,
+          username: this.username,
+          phone: this.phoneNumber,
+          email: this.email,
+          idcard: this.idCard,
+          oldPassword: null,
+          password: ''
+        }
+      })
+          .then(res => {
+            if (res.data.code === 200) {
+              alert("修改个人信息成功！");
+            }
+          })
+    }
   },
   mounted() {
+    // 获取个人信息
     this.$axios({
       method: 'get',
       url: '/api/users/getUser',
@@ -162,6 +187,7 @@ export default {
     })
         .then(res => {
           if (res.data.code === 200) {
+            this.userId = res.data.data.id;
             this.username = res.data.data.username;
             this.phoneNumber = res.data.data.phone;
             this.email = res.data.data.email;

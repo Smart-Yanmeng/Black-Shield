@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="purple-button">保存</div>
+  <a class="purple-button" href="#">保存</a>
 </template>
 
 <style scoped>
