@@ -55,22 +55,29 @@ export default {
           'imagePath': 'top01.png',
           'title': '10月黑盾等保认证',
           'date': '2021年10月28日 18:00～19:00',
-          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam'
+          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam',
+          'status': 0,
+          'subject': 'First'
         }, {
           'imagePath': 'top02.png',
           'title': '11月黑盾等保认证',
           'date': '2021年11月16日 18:00～19:00',
-          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam'
+          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam',
+          'status': 1,
+          'subject': 'Second'
         }, {
           'imagePath': 'top03.png',
           'title': '12月黑盾认证',
           'date': '2021年12月14日 18:00～19:00',
-          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam'
+          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam',
+          'status': 2,
+          'subject': 'Third'
         }
       ]
     }
   },
   mounted() {
+    // 获取用户名
     this.$axios({
       method: 'get',
       url: '/api/users/getUser',

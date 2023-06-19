@@ -4,7 +4,7 @@
 
 <template>
   <div class="container">
-    <a href="#">立即报名</a>
+    <a href="#">立即考试</a>
   </div>
 </template>
 

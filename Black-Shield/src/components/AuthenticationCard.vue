@@ -1,6 +1,7 @@
 <script setup>
 
 import GoRegister from "@/components/GoRegister.vue";
+import GoExam from "@/components/GoExam.vue";
 </script>
 
 <template>
@@ -15,21 +16,61 @@ import GoRegister from "@/components/GoRegister.vue";
       <div class="intro">{{ message.intro }}</div>
       <div class="line"></div>
       <div class="status">
-        <GoRegister class="before"></GoRegister>
-        <div class="begin"></div>
-        <div class="after"></div>
+        <GoRegister :class="this.isRegister ? 'display-none' : 'before'" @click="goRegister()"></GoRegister>
+        <GoExam :class="message.status === 0 ? 'begin' : 'display-none'">开始考试</GoExam>
+        <div class="after display-none"></div>
       </div>
     </div>
 
-    <div class="err display-none">意外退出请联系监考老师，开启入口！</div>
+    <div :class="message.status === 0 ? 'err' : 'display-none'">意外退出请联系监考老师，开启入口！</div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isRegister: '',
+    }
+  },
   props: ['message'],
+  methods: {
+    goRegister() {
+      let subject = this.message.subject;
+      this.$axios({
+        method: 'post',
+        url: `/api/exams/registeExams/${subject}`,
+        headers: {
+          'Content-Type': "application/json;charset=UTF-8",
+          'token': localStorage.getItem("token")
+        }
+      })
+          .then(res => {
+            if (res.data.code === 200) {
+              alert("报名成功！");
+
+              location.reload();
+            }
+          })
+    }
+  },
   mounted() {
-    console.log(this.message.imagePath);
+    console.log(this.message.subject);
+
+    let subject = this.message.subject;
+    this.$axios({
+      method: 'get',
+      url: `/api/exams/isregisteByName/${subject}`,
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+        'token': localStorage.getItem("token")
+      }
+    })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.isRegister = res.data.data;
+          }
+        })
   }
 }
 </script>
