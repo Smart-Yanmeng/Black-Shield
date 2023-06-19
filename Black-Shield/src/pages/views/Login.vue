@@ -49,8 +49,54 @@ import Footer from "@/components/Footer.vue";
       <Footer></Footer>
     </div>
   </div>
-
 </template>
+
+<script>
+import router from "@/router";
+
+export default {
+  data() {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    sendRequest() {
+      if (this.username === '') alert('请输入用户名');
+      else if (this.password === '') alert('请输入密码');
+      else {
+        this.$axios({
+          method: 'post',
+          url: '/api/index/login',
+          headers: {
+            'Content-Type': "application/json;charset=UTF-8",
+          },
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        })
+            .then(res => {
+              if (res.data.code === 200) {
+                // 利用 localStorage 存储到本地
+                localStorage.setItem("token", res.data.data.token);
+                alert("登录成功！");
+
+                // 执行页面跳转
+                router.push("/home");
+              } else {
+                console.log("Error!");
+              }
+            })
+            .catch(err => {
+              console.log("请求错误，请联系管理员");
+            })
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
 /* HEADER */
@@ -285,50 +331,3 @@ import Footer from "@/components/Footer.vue";
   color: #FFFFFF;
 }
 </style>
-
-<script>
-import router from "@/router";
-
-export default {
-  data() {
-    return {
-      username: '',
-      password: ''
-    }
-  },
-  methods: {
-    sendRequest() {
-      if (this.username === '') alert('请输入用户名');
-      else if (this.password === '') alert('请输入密码');
-      else {
-        this.$axios({
-          method: 'post',
-          url: '/api/index/login',
-          headers: {
-            'Content-Type': "application/json;charset=UTF-8",
-          },
-          data: {
-            username: this.username,
-            password: this.password
-          }
-        })
-            .then(res => {
-              if (res.data.code === 200) {
-                // 利用 localStorage 存储到本地
-                localStorage.setItem("token", res.data.data.token);
-                alert("登录成功！");
-
-                // 执行页面跳转
-                router.push("/home");
-              } else {
-                console.log("Error!");
-              }
-            })
-            .catch(err => {
-              console.log("请求错误，请联系管理员");
-            })
-      }
-    }
-  }
-}
-</script>

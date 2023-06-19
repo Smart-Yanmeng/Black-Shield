@@ -11,7 +11,7 @@ import AuthenticationCard from "@/components/AuthenticationCard.vue";
     <div class="body">
       <el-carousel trigger="click" arrow="never" height="248px">
         <el-carousel-item v-for="(item, index) in imageBox" :key="index">
-          <img alt="#" :src="'../../src/image/' + item.coursePath" style="margin: auto">
+          <img alt="#" :src="'./../../src/image/' + item.coursePath" style="margin: auto">
         </el-carousel-item>
       </el-carousel>
 
@@ -21,9 +21,7 @@ import AuthenticationCard from "@/components/AuthenticationCard.vue";
       </div>
 
       <div class="appointment-box">
-        <AuthenticationCard></AuthenticationCard>
-        <AuthenticationCard></AuthenticationCard>
-        <AuthenticationCard></AuthenticationCard>
+        <AuthenticationCard v-for="(item, index) in examList" :key="index" :message="item"></AuthenticationCard>
       </div>
 
       <div class="attention">
@@ -50,6 +48,24 @@ export default {
           'coursePath': 'carousel03.png'
         }, {
           'coursePath': 'carousel04.png'
+        }
+      ],
+      examList: [
+        {
+          'imagePath': 'top01.png',
+          'title': '10月黑盾等保认证',
+          'date': '2021年10月28日 18:00～19:00',
+          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam'
+        }, {
+          'imagePath': 'top02.png',
+          'title': '11月黑盾等保认证',
+          'date': '2021年11月16日 18:00～19:00',
+          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam'
+        }, {
+          'imagePath': 'top03.png',
+          'title': '12月黑盾认证',
+          'date': '2021年12月14日 18:00～19:00',
+          'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam'
         }
       ]
     }
@@ -108,7 +124,7 @@ export default {
   height: 57px;
   margin-bottom: 54px;
 
-  font-family: 'Helvetica',serif;
+  font-family: 'Helvetica', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

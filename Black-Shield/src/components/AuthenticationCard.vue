@@ -6,26 +6,33 @@ import GoRegister from "@/components/GoRegister.vue";
 <template>
   <div class="box">
     <div class="header">
-      <img src="./../image/top01.png" alt="#">
+      <img :src="'./../../src/image/' + message.imagePath" alt="#">
     </div>
 
     <div class="body">
-      <div class="title">10月黑盾等保认证</div>
-      <div class="date">2021年10月28日 18:00~19:00</div>
-      <div class="intro">Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit
-        ametconsectetur adipiscing elit ut aliquam
-      </div>
+      <div class="title">{{ message.title }}</div>
+      <div class="date">{{ message.date }}</div>
+      <div class="intro">{{ message.intro }}</div>
       <div class="line"></div>
       <div class="status">
-          <GoRegister class="before"></GoRegister>
+        <GoRegister class="before"></GoRegister>
         <div class="begin"></div>
         <div class="after"></div>
       </div>
     </div>
 
-    <div class="err">意外退出请联系监考老师，开启入口！</div>
+    <div class="err display-none">意外退出请联系监考老师，开启入口！</div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['message'],
+  mounted() {
+    console.log(this.message.imagePath);
+  }
+}
+</script>
 
 <style scoped>
 .box {
@@ -33,7 +40,7 @@ import GoRegister from "@/components/GoRegister.vue";
   height: 493px;
 
   background: #4CAF50;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
 }
 
@@ -108,7 +115,7 @@ import GoRegister from "@/components/GoRegister.vue";
 
   text-align: center;
 
-  font-family: 'PingFang SC',serif;
+  font-family: 'PingFang SC', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;

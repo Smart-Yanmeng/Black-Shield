@@ -10,6 +10,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+
+    }
+  },
+  props: ['card']
+}
+</script>
+
 <style scoped>
 .container {
   position: relative;
@@ -65,14 +76,3 @@
   color: #A0A0A0;
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-
-    }
-  },
-  props: ['card']
-}
-</script>
