@@ -56,21 +56,21 @@ export default {
           'title': '10月黑盾等保认证',
           'date': '2021年10月28日 18:00～19:00',
           'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam',
-          'status': 0,
+          'status': '',
           'subject': 'First'
         }, {
           'imagePath': 'top02.png',
           'title': '11月黑盾等保认证',
           'date': '2021年11月16日 18:00～19:00',
           'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam',
-          'status': 1,
+          'status': '',
           'subject': 'Second'
         }, {
           'imagePath': 'top03.png',
           'title': '12月黑盾认证',
           'date': '2021年12月14日 18:00～19:00',
           'intro': 'Lorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquamLorem ipsum dolor sit ametconsectetur adipiscing elit ut aliquam',
-          'status': 2,
+          'status': '',
           'subject': 'Third'
         }
       ]
@@ -96,6 +96,25 @@ export default {
         })
         .catch(err => {
           console.log("请求错误，请联系管理员");
+        })
+
+    // 获取考试信息
+    this.$axios({
+      method: 'get',
+      url: '/api/exams/getExamsList',
+      headers: {
+        'Content-Type': "application/json;charset=UTF-8",
+        'token': localStorage.getItem("token")
+      }
+    })
+        .then(res => {
+          if (res.data.code === 200) {
+            for (let i = 0; i < 3; i++) {
+              for (let j = 0; j < res.data.data.length; j++) {
+                if (res.data.data[j].subject === this.examList[i].subject) this.examList[i].status = res.data.data[j].status;
+              }
+            }
+          }
         })
   }
 }

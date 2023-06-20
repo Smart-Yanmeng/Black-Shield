@@ -1,5 +1,4 @@
 <script setup>
-
 import GoRegister from "@/components/GoRegister.vue";
 import GoExam from "@/components/GoExam.vue";
 </script>
@@ -17,16 +16,18 @@ import GoExam from "@/components/GoExam.vue";
       <div class="line"></div>
       <div class="status">
         <GoRegister :class="this.isRegister ? 'display-none' : 'before'" @click="goRegister()"></GoRegister>
-        <GoExam :class="message.status === 0 ? 'begin' : 'display-none'">开始考试</GoExam>
+        <GoExam :class="message.status === 0 ? 'begin' : 'display-none'" @click="goExam()"></GoExam>
         <div class="after display-none"></div>
       </div>
     </div>
 
-    <div :class="message.status === 0 ? 'err' : 'display-none'">意外退出请联系监考老师，开启入口！</div>
+    <div :class="message.status === 1 ? 'err' : 'display-none'">意外退出请联系监考老师，开启入口！</div>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   data() {
     return {
@@ -52,11 +53,14 @@ export default {
               location.reload();
             }
           })
+    },
+    goExam() {
+      this.$bus.emit('subjectName', this.message.subject);
+
+      router.push('/online/exam');
     }
   },
   mounted() {
-    console.log(this.message.subject);
-
     let subject = this.message.subject;
     this.$axios({
       method: 'get',

@@ -3,21 +3,26 @@
 </script>
 
 <template>
-  <div class="container">
-    <img class="card-bg" src="./../image/card-bg.png" alt="#">
-    <span class="title">{{ card.title }}</span>
-    <span class="card-info">{{ card.cardInfo }}</span>
-  </div>
+  <router-link :to="this.card.goto">
+    <div class="container" @click="gotoPage()">
+      <img class="card-bg" src="./../image/card-bg.png" alt="#">
+      <span class="title">{{ card.title }}</span>
+      <span class="card-info">{{ card.cardInfo }}</span>
+    </div>
+  </router-link>
+  <router-view></router-view>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
+import router from "@/router";
 
+export default {
+  props: ['card'],
+  methods: {
+    gotoPage() {
+      router.push(this.card.goto);
     }
-  },
-  props: ['card']
+  }
 }
 </script>
 
@@ -46,7 +51,7 @@ export default {
   left: 19px;
   top: 102px;
 
-  font-family: '微软雅黑',serif;
+  font-family: '微软雅黑', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -64,7 +69,7 @@ export default {
   left: 38px;
   top: 132px;
 
-  font-family: 'PingFang SC',serif;
+  font-family: 'PingFang SC', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

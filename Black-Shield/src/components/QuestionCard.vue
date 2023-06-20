@@ -1,26 +1,28 @@
 <script setup>
-import TimeOut from "@/components/TimeOut.vue"
 </script>
 
 <template>
   <div class="box">
-    <div class="question-card" v-for="(qs, index) in question" :key="index" v-show="index === idx">
+    <div class="question-card" v-for="(qs, index) in questions" :key="index" v-show="index === idx">
       <div class="head-bar">
         <div class="number">
-          {{ index + 1 }}/{{ question.length }}
+          {{ index + 1 }}/{{ questions.length }}
         </div>
+
         <div class="clock">
           <img class="clock-image" src="./../image/clock.png" alt="#">
           <div class="time-out">
-            <TimeOut></TimeOut>
+            <div class="time">
+              <p>00:{{ timerCount2 }}:{{ timerCount1 }}</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="question">{{ qs.name }}</div>
+      <div class="question">{{ qs.description }}</div>
 
       <div class="answer">
-        <div class="option" v-for="(item, index) in qs.option" :key="index">
+        <div class="option" v-for="(item, index) in qs.optionList" :key="index">
           <div :class="item.checked ? 'checked' : 'unchecked'" @click="toSelect(qs, item)">{{ item.letter }}</div>
           <div class="option-content">{{ item.name }}</div>
         </div>
@@ -35,15 +37,158 @@ import TimeOut from "@/components/TimeOut.vue"
       </div>
 
       <div class="option-select-box">
-        <div class="option-select" v-for="(item, index) in question" :key="index" @click="idx = index">
+        <div class="option-select" v-for="(item, index) in questions" :key="index" @click="idx = index">
           <div :class="item.selected ? 'option-selected' : 'option-unselected'">{{ index + 1 }}</div>
         </div>
       </div>
 
-      <div :class="commit() ? 'commit' : 'cannot-commit'">提交答卷</div>
+      <div :class="commit() ? 'commit' : 'cannot-commit'" @click="submitAnswer()">提交答卷</div>
     </div>
   </div>
 </template>
+
+<script>
+import router from "@/router";
+
+export default {
+  props: ['message'],
+  data() {
+    return {
+      idx: 0,
+      isCountDown: 0,
+      storageSeconds: 59,
+      seconds: 59,
+      minutes: 59,
+      timer: null,
+      subjectName: '',
+      examId: '',
+      questions: [],
+      myExamAnswer: []
+    };
+  },
+  methods: {
+    // 开始考试
+    startExam() {
+      let subject = 'First';
+      this.$axios({
+        method: 'post',
+        url: `/api/exams/startExam/${subject}`,
+        headers: {
+          'Content-Type': "application/json;charset=UTF-8",
+          'token': localStorage.getItem("token")
+        }
+      })
+          .then(res => {
+            if (res.data.code === 200) {
+              this.start();
+
+              this.examId = res.data.data.examId;
+              this.questions = res.data.data.questions;
+            }
+          })
+    },
+    // 下一题
+    next() {
+      this.idx++;
+    },
+    // 选择答案
+    toSelect(qs, item) {
+      qs.selected = true;
+      for (let i = 0; i < qs.optionList.length; i++) {
+        qs.optionList[i].checked = false;
+      }
+      item.checked = true;
+
+      let answer = {
+        correct: 0,
+        examId: parseInt(this.examId),
+        id: qs.id,
+        questionId: qs.id,
+        selected: item.id - 1
+      }
+
+      this.myExamAnswer.push(answer);
+    },
+    commit() {
+      for (let i = 0; i < this.questions.length; i++) {
+        if (this.questions[i].correct === false) return false;
+      }
+      return true;
+    },
+    // 提交答卷
+    submitAnswer() {
+      let examsId = this.examId;
+      this.$axios({
+        method: 'post',
+        url: `/api/exams/submitExams/${examsId}`,
+        headers: {
+          'Content-Type': "application/json;charset=UTF-8",
+          'token': localStorage.getItem("token")
+        },
+        data: this.myExamAnswer
+      })
+          .then(res => {
+            if (res.data.code === 200) {
+              this.stop();
+
+              router.push('/home');
+            }
+          })
+    },
+    // 开始
+    start() {
+      this.isCountDown = 1;
+    },
+    // 停止
+    stop() {
+      this.isCountDown = 2;
+      clearInterval(this.timer);
+    },
+    // 清除
+    clear() {
+      alert("考试时间到！")
+      clearInterval(this.timer);
+    },
+    // 倒计时
+    timing() {
+      this.timer = setInterval(() => {
+        if (this.seconds === 0 && this.minutes !== 0 && this.minutes > 0) {
+          this.minutes--;
+          this.seconds = this.storageSeconds;
+        } else if (this.minutes === 0 && this.seconds === 0) {
+          this.isCountDown = 0;
+        } else {
+          this.seconds--;
+        }
+      }, 1000);
+    }
+  },
+  watch: {
+    isCountDown(newValue) {
+      if (newValue === 1) this.timing();
+      else if (newValue === 0) this.clear();
+      else if (newValue === 2) alert("成功提交试卷！")
+    }
+  },
+  mounted() {
+    // 获取考试名
+    this.$bus.on("subjectName", (data) => {
+      this.subjectName = data;
+    });
+
+    // 获取题目
+    this.startExam();
+  },
+  computed: {
+    timerCount1() {
+      return this.seconds < 10 ? "0" + this.seconds : "" + this.seconds;
+    },
+    timerCount2() {
+      return this.minutes < 10 ? "0" + this.minutes : "" + this.minutes;
+    },
+  }
+};
+</script>
 
 <style scoped>
 .box {
@@ -319,154 +464,10 @@ import TimeOut from "@/components/TimeOut.vue"
 
   color: #BBBBBB;
 }
-</style>
 
-<script>
-export default {
-  data() {
-    return {
-      idx: 0,
-      question: [
-        {
-          id: 1,
-          selected: false,
-          name: '今天星期几?',
-          option: [
-            {
-              id: 1,
-              name: '星期一',
-              checked: false,
-              letter: 'A'
-            }, {
-              id: 2,
-              name: '星期三',
-              checked: false,
-              letter: 'B'
-            }, {
-              id: 3,
-              name: '星期四',
-              checked: false,
-              letter: 'C'
-            },
-          ],
-
-        }, {
-          id: 2,
-          selected: false,
-          name: '你喜欢吃什么?',
-          answer: 'C',
-          score: 2,
-          option: [
-            {
-              id: 1,
-              name: '香蕉',
-              checked: false,
-              letter: 'A'
-            }, {
-              id: 2,
-              name: '苹果',
-              checked: false,
-              letter: 'B'
-            }, {
-              id: 3,
-              name: '橘子',
-              checked: false,
-              letter: 'C'
-            },
-          ],
-
-        }, {
-          id: 3,
-          selected: false,
-          name: '你的梦想是什么?',
-          option: [
-            {
-              id: 1,
-              name: '当一名程序员',
-              checked: false,
-              letter: 'A'
-            }, {
-              id: 2,
-              name: '当一名测试员',
-              checked: false,
-              letter: 'B'
-            }, {
-              id: 3,
-              name: '当一名运维',
-              checked: false,
-              letter: 'C'
-            },
-          ],
-
-        }, {
-          id: 4,
-          selected: false,
-          name: '这是一题多选吗?',
-          answer: 'BC',
-          score: 2,
-          option: [
-            {
-              id: 1,
-              name: '不是',
-              checked: false,
-              letter: 'A'
-            }, {
-              id: 2,
-              name: '是的',
-              checked: false,
-              letter: 'B'
-            }, {
-              id: 3,
-              name: '是的',
-              checked: false,
-              letter: 'C'
-            },
-          ],
-        }, {
-          id: 5,
-          selected: false,
-          name: '是多选吧?',
-          answer: 'ABC',
-          score: 2,
-          option: [ //选项
-            {
-              id: 1,
-              name: '是的',
-              checked: false,
-              letter: 'A'
-            }, {
-              id: 2,
-              name: '是的',
-              checked: false,
-              letter: 'B'
-            }, {
-              id: 3,
-              name: '是的',
-              checked: false,
-              letter: 'C'
-            },
-          ],
-        },
-      ]
-    }
-  },
-  methods: {
-    next() {
-      this.idx++;
-    },
-    toSelect(qs, item) {
-      qs.selected = true;
-      for (let i = 0; i < qs.option.length; i++) {
-        qs.option[i].checked = false;
-      }
-      item.checked = true;
-    },
-    commit() {
-      for (let i = 0; i < this.question.length; i++) {
-        if (this.question[i].selected === false) return false;
-      }
-      return true;
-    }
-  }
+.time {
+  color: #f72a3a;
+  font-weight: bold;
+  font-size: 26px;
 }
-</script>
+</style>
